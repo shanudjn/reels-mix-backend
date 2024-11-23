@@ -1,5 +1,6 @@
 import { exec } from "child_process";
 import fs from "fs";
+import path from "path";
 
 export const createMontage = (
   videoPaths: string[],
@@ -11,8 +12,9 @@ export const createMontage = (
 
   fs.writeFileSync(videoListPath, fileContent);
 
+  const outputFilePath = path.join(__dirname, "../../uploads", outputFile);
   const command = `
-    ffmpeg -f concat -safe 0 -i ${videoListPath} -t 30 -c copy ${outputFile}
+    ffmpeg -f concat -safe 0 -i ${videoListPath} -t 30 -c copy ${outputFilePath}
   `;
 
   exec(command, (error, stdout, stderr) => {
@@ -20,6 +22,6 @@ export const createMontage = (
     if (error) {
       return callback(error);
     }
-    callback(null, `uploads/${outputFile}`);
+    callback(null, outputFile);
   });
 };

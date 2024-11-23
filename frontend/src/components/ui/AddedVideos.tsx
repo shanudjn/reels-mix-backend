@@ -8,10 +8,12 @@ interface AddedVideosProps {
   setMontageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AddedVideos: React.FC<AddedVideosProps> = ({ videos, setVideos, setMontageUrl }) => {
+const AddedVideos: React.FC<AddedVideosProps> = ({
+  videos,
+  setVideos,
+  setMontageUrl,
+}) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-
 
   const handleAddVideoClick = () => {
     if (fileInputRef.current) {
@@ -45,14 +47,14 @@ const AddedVideos: React.FC<AddedVideosProps> = ({ videos, setVideos, setMontage
       if (!response.ok) {
         throw new Error("Failed to create montage");
       }
-
+      console.log("response", response);
       const result = await response.json();
-      setMontageUrl(`http://localhost:5000/uploads/${result.output}`);
+      console.log("result", result);
+      const fileName = result.output;
+      setMontageUrl(`http://localhost:5000/uploads/stream/${fileName}`);
     } catch (error) {
       console.error("Error creating montage:", error);
       alert("Failed to create montage. Please try again.");
-    } finally {
-      
     }
   };
 
