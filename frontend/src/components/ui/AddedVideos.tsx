@@ -47,14 +47,11 @@ const AddedVideos: React.FC<AddedVideosProps> = ({
       if (!response.ok) {
         throw new Error("Failed to create montage");
       }
-      console.log("response", response);
       const result = await response.json();
-      console.log("result", result);
       const fileName = result.output;
       setMontageUrl(`http://localhost:5000/uploads/stream/${fileName}`);
     } catch (error) {
       console.error("Error creating montage:", error);
-      alert("Failed to create montage. Please try again.");
     }
   };
 

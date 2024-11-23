@@ -15,7 +15,6 @@ router.get("/", (req: Request, res: Response) => {
 });
 
 router.get("/stream/:filename", (req: Request, res: Response) => {
-  console.log("streaming file");
   const fileName = req.params.filename;
   const filePath = path.resolve(__dirname, "../../uploads", fileName);
 
