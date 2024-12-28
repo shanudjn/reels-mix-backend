@@ -16,19 +16,6 @@ const VideoPreview = ({ videos }: VideoPreviewProps) => {
     alert("Failed to load video. Please try again.");
   };
 
-  // const fileInputRef = useRef<HTMLInputElement>(null);
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files) {
-  //     setVideos([...videos, ...Array.from(event.target.files)]);
-  //   }
-  // };
-
-  // const handleAddVideoClick = () => {
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-
   const handleVideoLoaded = () => {
     console.log("Video loaded successfully");
   };
@@ -66,15 +53,6 @@ const VideoPreview = ({ videos }: VideoPreviewProps) => {
         <Upload className="w-4 h-4 mr-2" />
         Create Montage
       </Button>
-
-      {/* <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        accept="video/*"
-        multiple
-        onChange={handleFileChange}
-      /> */}
       <div className="bg-black aspect-video rounded-lg flex items-center justify-center">
         {montageUrl ? (
           <video
