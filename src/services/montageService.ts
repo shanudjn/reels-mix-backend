@@ -6,7 +6,6 @@ import path from "path";
 export const createMontage = (
   videoPaths: string[],
   outputFile: string
-  // callback: (error: Error | null, output?: string) => void
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const videoListPath = "video_list.txt";
