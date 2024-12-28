@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import videoRoutes from "./routes/videoRoutes";
-import uploadRoutes from "./routes/uploadRoutes";
+import streamRoutes from "./routes/streamRoutes";
 
 const app = express();
 
@@ -13,8 +13,7 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "../public")));
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
-app.use("/uploads", uploadRoutes);
+app.use("/stream", streamRoutes);
 app.use("/videos", videoRoutes);
 
 const PORT = process.env.PORT || 5000;

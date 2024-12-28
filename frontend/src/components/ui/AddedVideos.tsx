@@ -1,17 +1,17 @@
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Film, Plus, Upload } from "lucide-react";
+import { ChevronRight, Film, Plus } from "lucide-react";
 
 interface AddedVideosProps {
   videos: File[];
   setVideos: React.Dispatch<React.SetStateAction<File[]>>;
-  setMontageUrl: React.Dispatch<React.SetStateAction<string>>;
+  // setMontageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AddedVideos: React.FC<AddedVideosProps> = ({
   videos,
   setVideos,
-  setMontageUrl,
+  // setMontageUrl,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,33 +27,33 @@ const AddedVideos: React.FC<AddedVideosProps> = ({
     }
   };
 
-  const handleCreateMontage = async () => {
-    if (videos.length < 1) {
-      alert("Please add at least 1 videos");
-      return;
-    }
-    const formData = new FormData();
-    videos.forEach((video) => formData.append("videos", video));
+  // const handleCreateMontage = async () => {
+  //   if (videos.length < 1) {
+  //     alert("Please add videos to create montage");
+  //     return;
+  //   }
+  //   const formData = new FormData();
+  //   videos.forEach((video) => formData.append("videos", video));
 
-    try {
-      const response = await fetch(
-        "http://localhost:5000/videos/create-montage",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost:5000/videos/create-montage",
+  //       {
+  //         method: "POST",
+  //         body: formData,
+  //       }
+  //     );
 
-      if (!response.ok) {
-        throw new Error("Failed to create montage");
-      }
-      const result = await response.json();
-      const fileName = result.output;
-      setMontageUrl(`http://localhost:5000/uploads/stream/${fileName}`);
-    } catch (error) {
-      console.error("Error creating montage:", error);
-    }
-  };
+  //     if (!response.ok) {
+  //       throw new Error("Failed to create montage");
+  //     }
+  //     const result = await response.json();
+  //     const fileName = result.output;
+  //     setMontageUrl(`http://localhost:5000/stream/${fileName}`);
+  //   } catch (error) {
+  //     console.error("Error creating montage:", error);
+  //   }
+  // };
 
   return (
     <div className="w-80 bg-white shadow-md p-4 flex flex-col">
@@ -76,14 +76,6 @@ const AddedVideos: React.FC<AddedVideosProps> = ({
         <Button className="w-full" onClick={handleAddVideoClick}>
           <Plus className="w-4 h-4 mr-2" />
           Add Video
-        </Button>
-        <Button
-          className="w-full"
-          variant="outline"
-          onClick={handleCreateMontage}
-        >
-          <Upload className="w-4 h-4 mr-2" />
-          Create Montage
         </Button>
       </div>
       <input

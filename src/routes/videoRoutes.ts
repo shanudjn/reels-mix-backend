@@ -18,6 +18,10 @@ router.post(
   upload.array("videos", 3),
   async (req: Request, res: Response): Promise<any> => {
     const files = (req as MulterRequest).files;
+    //TODO
+    // if (!files || files.length < 3) {
+    //   return res.status(400).json({ error: "Please upload at least 3 videos" });
+    // }
 
     const videoPaths = files.map((file) => file.path);
     const outputFile = `montage_${Date.now()}.mp4`;
