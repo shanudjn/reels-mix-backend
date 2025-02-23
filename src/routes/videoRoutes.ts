@@ -17,6 +17,7 @@ router.post(
   "/create-montage",
   upload.array("videos", 3),
   async (req: Request, res: Response): Promise<any> => {
+    console.log("here", req.files);
     const files = (req as MulterRequest).files;
     //TODO
     // if (!files || files.length < 3) {
